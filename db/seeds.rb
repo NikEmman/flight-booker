@@ -13,3 +13,15 @@ codes = ["ATH", "LHR", "DXB", "LAX", "DEL", "DEL", "SIN", "MUC", "MIA"]
 names.zip(codes).each do |name, code|
     Airport.create(name: name, code: code)
   end
+
+def populate_flights(n)
+  airports = Airport.all
+  n.times do
+    departure_airport, arrival_airport = airports.sample(2)
+    start = rand(1..30).days.from_now
+    duration = rand(1..12) * 60 # duration in minutes
+    Flight.create(departure_airport_id: departure_airport.id, arrival_airport_id: arrival_airport.id, start: start, duration: duration)
+  end
+end
+
+populate_flights(100)
