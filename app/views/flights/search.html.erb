@@ -20,7 +20,10 @@
        <td><%=flight.duration_formatted%></td>
      </tr>
     <% end %>
+    <%= form.hidden_field :num_tickets, value: params[:num_tickets] %>
     </table>
+   
+    
     <%= form.submit"Book Now" %>
   <% end%>
   
