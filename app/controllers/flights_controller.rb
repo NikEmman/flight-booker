@@ -1,8 +1,11 @@
 class FlightsController < ApplicationController
   def index
     @flights = Flight.all
-    @flight_departure_options = @flights.map{ |f| f.departure_airport.name_code }.uniq
-    @flight_arrival_options = @flights.map{ |f| f.arrival_airport.name_code }.uniq
+    @airports = Airport.all
+    @flight_options = @airports.map{|a| a.name_code}.uniq
+  end
+
+  def search
   end
 
   

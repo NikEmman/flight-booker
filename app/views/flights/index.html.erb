@@ -4,9 +4,9 @@
 
 <%= form_with(url: "/", method: "get", data: { turbo: false} ) do %>
     <%= label_tag(:departure_airport, "Departing from:") %>
-    <%= select_tag(:departure_airport_id, options_for_select(@flight_departure_options)) %>
+    <%= select_tag(:departure_airport_id, options_for_select(@flight_options)) %>
     <%= label_tag(:arrival_airport, "Arriving at:") %>
-    <%= select_tag(:arrival_airport_id, options_for_select(@flight_arrival_options)) %>
+    <%= select_tag(:arrival_airport_id, options_for_select(@flight_options)) %>
     <%= label_tag(:start_date, "Start Date:") %>
     <%= date_field_tag(:start_date, Date.today, min: Date.today) %>
     <%= label_tag(:end_date, "Start Date:") %>
