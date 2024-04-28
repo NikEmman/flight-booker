@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "bookings/new"
   get "bookings/index"
   get '/:id', to: 'bookings#show'
+  post "/bookings", to: "bookings#create"
 
   
   root "flights#index"

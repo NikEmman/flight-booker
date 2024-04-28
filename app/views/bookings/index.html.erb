@@ -1,2 +1,24 @@
 <h1>This is where you create a new booking</h1>
-<p><%= @booking.flight.departure_airport.code%></p>
+<table>
+  <tr>
+    <th>Departure </th>
+    <th>Destination </th>
+    <th>Date </th>
+    <th>Duration </th>
+  </tr>
+  <tr>
+    <td><%=@booking.flight.departure_airport.name.upcase%></td>
+    <td><%=@booking.flight.arrival_airport.name.upcase%></td>
+    <td><%=@booking.flight.start_formatted %></td>
+    <td><%=@booking.flight.duration_formatted%></td>
+  </tr>
+</table>
+
+<h2>Passenger details</h2>
+<%= form_with(url: "/bookings/", method: "post") do |form| %>
+  <%= form.fields_for @booking do |booking_form| %>
+    <%= booking_form.hidden_field :flight_id, value: @booking.flight_id %>
+    <%= booking_form.hidden_field :num_tickets, value: @booking.num_tickets %>
+  <% end %>
+  <%= form.submit "Book Now" %>
+<% end %>

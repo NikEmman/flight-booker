@@ -9,7 +9,7 @@
     <th>Duration </th>
   </tr>
 <%if @flights%>
-  <%= form_with(url:"/bookings/index", method:"get", data: {turbo: false}) do |form| %>
+  <%= form_with(url:"/bookings/index", method:"get") do |form| %>
     
    <% @flights.each do |flight| %>
      <tr>
@@ -24,7 +24,7 @@
     </table>
    
     
-    <%= form.submit"Book Now" %>
+    <%= form.submit"Pick Flight" %>
   <% end%>
   
       

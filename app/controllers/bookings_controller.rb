@@ -9,12 +9,12 @@ class BookingsController < ApplicationController
     end
 
     def create
-        @booking = Booking.new(flight_id: params[:flight_id], num_tickets: params[:num_tickets])
+        @booking = Booking.new(booking_params)
         respond_to do |format|
             if @booking.save
               format.html { redirect_to booking_path, notice: "Your flight is booked!" }
             else
-              format.html { render :new, status: :unprocessable_entity }
+              format.html { render :error, status: :unprocessable_entity }
             end
         end
     end
