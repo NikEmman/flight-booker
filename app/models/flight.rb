@@ -8,4 +8,6 @@ class Flight < ApplicationRecord
       minutes = duration % 60
       "#{hours}h #{minutes}m"
     end
+
+    
 end

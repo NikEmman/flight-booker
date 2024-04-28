@@ -1,2 +1,15 @@
-<h1>Flights#index</h1>
+<h1>Choose your flight</h1>
 <p>We have <%=@flights.count%> flights available</p>
+
+
+<%= form_with(url: "/", method: "get", data: { turbo: false} ) do %>
+    <%= label_tag(:departure_airport, "Departing from:") %>
+    <%= select_tag(:departure_airport_id, options_for_select(@flight_departure_options)) %>
+    <%= label_tag(:arrival_airport, "Arriving at:") %>
+    <%= select_tag(:arrival_airport_id, options_for_select(@flight_arrival_options)) %>
+    <%= label_tag(:start_date, "Start Date:") %>
+    <%= date_field_tag(:start_date, Date.today, min: Date.today) %>
+    <%= label_tag(:end_date, "Start Date:") %>
+    <%= date_field_tag(:end_date, Date.today, min: Date.today) %>
+    <%= submit_tag("Search") %>
+  <% end %>
