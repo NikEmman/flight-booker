@@ -1,14 +1,29 @@
 <%= render "form", flight_options: @flight_options %>
 <h2>Flights available:</h2>
+<table>
+  <tr>
+    <th>Select</th>
+    <th>Departure </th>
+    <th>Destination </th>
+    <th>Date </th>
+    <th>Duration </th>
+  </tr>
 <%if @flights%>
-    <%= form_with(url:"/bookings/index", method:"get", data: {turbo: false}) do |form| %>
-      <% @flights.each do |flight| %>
-        <%= form.radio_button :flight_id, flight.id %>
-        <%= "#{flight.departure_airport.name.upcase} to #{flight.arrival_airport.name.upcase} at #{flight.start}" %>
-        <% end %>
-        <%= form.submit("Book now") %>
-      <%end%>
-<%else%>
-    <p>No flights found.</p>
-<%end%>
+  <%= form_with(url:"/bookings/index", method:"get", data: {turbo: false}) do |form| %>
+    
+   <% @flights.each do |flight| %>
+     <tr>
+       <td><%= form.radio_button :flight_id, flight.id %></td>
+       <td><%=flight.departure_airport.name.upcase%></td>
+       <td><%=flight.arrival_airport.name.upcase%></td>
+       <td><%=flight.start_formatted %></td>
+       <td><%=flight.duration_formatted%></td>
+     </tr>
+    <% end %>
+    </table>
+    <%= form.submit"Book Now" %>
+  <% end%>
+  
       
+<%end%>
+

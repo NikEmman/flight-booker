@@ -9,6 +9,10 @@ class Flight < ApplicationRecord
       "#{hours}h #{minutes}m"
     end
 
+    def start_formatted
+      start.strftime("%Y %m %d, %H:%M")
+    end
+
     
     
 end
