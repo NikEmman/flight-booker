@@ -1,0 +1,14 @@
+<%= render "form", flight_options: @flight_options %>
+<h2>Flights available:</h2>
+<%if @flights%>
+    <%= form_with(url:"/bookings/index", method:"get", data: {turbo: false}) do |form| %>
+      <% @flights.each do |flight| %>
+        <%= form.radio_button :flight_id, flight.id %>
+        <%= "#{flight.departure_airport.name.upcase} to #{flight.arrival_airport.name.upcase} at #{flight.start}" %>
+        <% end %>
+        <%= form.submit("Book now") %>
+      <%end%>
+<%else%>
+    <p>No flights found.</p>
+<%end%>
+      
