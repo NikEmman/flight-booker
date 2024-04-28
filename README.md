@@ -1,24 +1,11 @@
-# README
+# Flight-booker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a rails project of  [TheOdinProject](https://www.theodinproject.com/lessons/ruby-on-rails-flight-booker) curriculum, meant to teach how to implement nested forms.
 
-Things you may want to cover:
+## Project details
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+>The user will be able to :
+>
+> 1. Enter desired dates / airports and click “Search”
+> 1. Choose from among a list of available flights
+> 1. Enter passenger information for all passengers
