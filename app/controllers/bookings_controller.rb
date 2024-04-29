@@ -1,20 +1,25 @@
 class BookingsController < ApplicationController
+    
     def new
-        @booking = Booking.new(flight_id: params[:flight_id], num_tickets: params[:num_tickets])
-        
+            @booking = Booking.new(flight_id: params[:flight_id], num_tickets: params[:num_tickets])
+            @booking.num_tickets.times { @booking.passengers.build }
     end
+          
+    
 
     def index
         @booking = Booking.new(flight_id: params[:flight_id], num_tickets: params[:num_tickets])
+        @booking.num_tickets.times { @booking.passengers.build }
     end
 
     def create
         @booking = Booking.new(booking_params)
+        @booking.passengers.build(params[:booking][:passengers])
         respond_to do |format|
             if @booking.save
               format.html { redirect_to booking_url(@booking), notice: "Your flight is booked!" }
             else
-              format.html { render :error, status: :unprocessable_entity }
+              format.html { render :index, status: :unprocessable_entity }
             end
         end
     end
@@ -25,7 +30,7 @@ class BookingsController < ApplicationController
     
     private
     def booking_params
-        params.require(:booking).permit(:flight_id, :num_tickets)
+        params.require(:booking).permit(:flight_id, :num_tickets, passengers_attributes:[:name,:email,:booking_id])
     end
     
 end

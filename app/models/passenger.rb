@@ -1,6 +1,8 @@
 class Passenger < ApplicationRecord
-    belongs_to :booking 
-    belongs_to :flight, through: :booking
+    belongs_to :booking
+    validates :name, presence: true
+    validates :email, presence: true
+
 
     def new
         @passenger = Passenger.new
