@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   get "flights/search"
   get "bookings/new"
   get "bookings/index"
-  get '/:id', to: 'bookings#show'
   post "/bookings", to: "bookings#create"
+  resources :bookings, only: [:show]
 
   
   root "flights#index"

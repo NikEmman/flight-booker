@@ -1,10 +1,10 @@
 <h1>This is where you create a new booking</h1>
 <table>
   <tr>
-    <th>Departure </th>
-    <th>Destination </th>
-    <th>Date </th>
-    <th>Duration </th>
+    <th>Departure</th>
+    <th>Destination</th>
+    <th>Date</th>
+    <th>Duration</th>
   </tr>
   <tr>
     <td><%=@booking.flight.departure_airport.name.upcase%></td>
@@ -15,10 +15,10 @@
 </table>
 
 <h2>Passenger details</h2>
-<%= form_with(url: "/bookings/", method: "post") do |form| %>
-  <%= form.fields_for @booking do |booking_form| %>
-    <%= booking_form.hidden_field :flight_id, value: @booking.flight_id %>
-    <%= booking_form.hidden_field :num_tickets, value: @booking.num_tickets %>
-  <% end %>
+<%= form_with model: @booking, url: "/bookings/", method: "post", data: { turbo: false } do |form| %>
+  <%= form.hidden_field :flight_id, value: @booking.flight_id %>
+  <%= form.hidden_field :num_tickets, value: @booking.num_tickets %>
   <%= form.submit "Book Now" %>
 <% end %>
+
+

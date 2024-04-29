@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
         @booking = Booking.new(booking_params)
         respond_to do |format|
             if @booking.save
-              format.html { redirect_to booking_path, notice: "Your flight is booked!" }
+              format.html { redirect_to booking_url(@booking), notice: "Your flight is booked!" }
             else
               format.html { render :error, status: :unprocessable_entity }
             end
