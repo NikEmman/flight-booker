@@ -1,2 +1,22 @@
 <h1>My booking</h1>
 
+<table>
+  <tr>
+    <th>Departure </th>
+    <th>Destination </th>
+    <th>Date </th>
+    <th>Flight Duration </th>
+    <th>Passenger names</th>
+  </tr>
+
+  <tr>
+    <td><%=@booking.flight.departure_airport.name.upcase%></td>
+    <td><%=@booking.flight.arrival_airport.name.upcase%></td>
+    <td><%=@booking.flight.start_formatted %></td>
+    <td><%=@booking.flight.duration_formatted%></td>
+    <td><%@booking.passengers.each do |passenger|%>
+           <p><%=passenger.name%></p>
+        <%end%>
+    </td>
+    </tr>
+</table>
