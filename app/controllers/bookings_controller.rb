@@ -14,7 +14,6 @@ class BookingsController < ApplicationController
 
     def create
         @booking = Booking.new(booking_params)
-        @booking.passengers.build(params[:booking][:passengers])
         respond_to do |format|
             if @booking.save
               format.html { redirect_to booking_url(@booking), notice: "Your flight is booked!" }
