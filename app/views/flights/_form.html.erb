@@ -2,12 +2,16 @@
 <%= form_with(url: "/flights/search", method: "get") do %>
     <%= label_tag(:departure_airport, "Departing from:") %>
     <%= select_tag(:departure_airport, options_for_select(@flight_options)) %>
+    <br>
     <%= label_tag(:arrival_airport, "Arriving at:") %>
     <%= select_tag(:arrival_airport, options_for_select(@flight_options)) %>
+    <br>
     <%= label_tag(:start_date, "From:") %>
     <%= date_field_tag(:start_date, Date.today, min: Date.today) %>
+    <br>
     <%= label_tag(:end_date, "Up to:") %>
     <%= date_field_tag(:end_date, Date.today, min: Date.today) %>
+    <br>
     <%= label_tag(:num_tickets, "Tickets") %>
     <%= select_tag(:num_tickets, options_for_select([1,2,3,4]) ) %>
     <%= submit_tag("Search") %>

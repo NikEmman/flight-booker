@@ -1,4 +1,4 @@
-<h1>This is where you create a new booking</h1>
+<h1>Book the flight</h1>
 <table>
   <tr>
     <th>Departure</th>
@@ -21,9 +21,10 @@
   <%= form.fields_for :passengers do |f|%>
     <%# @booking.num_tickets.times do %>
      <div class="container">
-      <%= f.label :name%>
+      <%=f.label :name%>
       <%=f.text_field :name%>
-      <%= f.label :email%>
+      <br>
+      <%=f.label :email%>
       <%=f.text_field :email%>
     </div>
     <%#end%>
