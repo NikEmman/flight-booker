@@ -17,17 +17,14 @@
 <h2>Passenger details</h2>
 <%= form_with model: @booking, url: "/bookings/", method: "post", data: { turbo: false } do |form| %>
   <%= form.hidden_field :flight_id, value: @booking.flight_id %>
-  <%= form.hidden_field :num_tickets, value: @booking.num_tickets %>
   <%= form.fields_for :passengers do |f|%>
-    <%# @booking.num_tickets.times do %>
-     <div class="container">
+    <div class="container">
       <%=f.label :name%>
       <%=f.text_field :name%>
       <br>
       <%=f.label :email%>
       <%=f.text_field :email%>
     </div>
-    <%#end%>
   <%end%>
   <%= form.submit "Book Now" %>
 <% end %>
