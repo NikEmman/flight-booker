@@ -1,16 +1,16 @@
 class BookingsController < ApplicationController
   def new
-    @booking = Booking.new(flight_id: params[:flight_id], num_tickets: params[:num_tickets])
-    params[:num_tickets].to_i.times { @booking.passengers.build }
+    @booking = Booking.new(flight_id: params[:flight_id])
   end
 
   def index
     @booking = Booking.new(flight_id: params[:flight_id])
-    params[:num_tickets].to_i.times { @booking.passengers.build }
+    # params[:num_tickets].to_i.times { @booking.passengers.build }
   end
 
   def create
     @booking = Booking.new(booking_params)
+    puts params.inspect
     respond_to do |format|
       if @booking.save
         format.html { redirect_to booking_url(@booking), notice: 'Your flight is booked!' }

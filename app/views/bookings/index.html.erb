@@ -14,19 +14,45 @@
   </tr>
 </table>
 
-<h2>Passenger details</h2>
-<%= form_with model: @booking, url: "/bookings/", method: "post", data: { turbo: false } do |form| %>
-  <%= form.hidden_field :flight_id, value: @booking.flight_id %>
-  <%= form.fields_for :passengers do |f|%>
-    <div class="container">
-      <%=f.label :name%>
-      <%=f.text_field :name%>
-      <br>
-      <%=f.label :email%>
-      <%=f.text_field :email%>
-    </div>
-  <%end%>
-  <%= form.submit "Book Now" %>
-<% end %>
+<div data-controller="passenger">
 
+<h2>Passenger details</h2> 
+<a data-action="passenger#addPassenger"> ✚ </a> 
+  <%= form_with model: @booking, url: "/bookings/", method: "post", data: { turbo: false } do |form| %>
+    <%= form.hidden_field :flight_id, value: @booking.flight_id %>
+    <div data-passenger-target="passengers">
+      <% params[:num_tickets].to_i.times do %>
+        <%= form.fields_for 'passengers_attributes[]', Passenger.new do |f| %>
+          <div class="passenger-wrapper">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+            <br>
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+            <a data-action="passenger#removePassenger">⛔</a>
+
+            
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <template data-passenger-target="template">
+      <%= form.fields_for 'passengers_attributes[]', Passenger.new, child_index: 'NEW_RECORD' do |f| %>
+        <div class="passenger-wrapper">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+          <br>
+          <%= f.label :email %>
+          <%= f.text_field :email %>
+          <a data-action="passenger#removePassenger">⛔</a>
+
+        </div>
+      <% end %>
+    </template>
+
+    <br>
+    <%= form.submit "Book Now" %>
+  <% end %>
+</div>
 
