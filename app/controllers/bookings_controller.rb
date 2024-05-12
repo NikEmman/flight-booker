@@ -10,10 +10,12 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    puts params.inspect
     respond_to do |format|
       if @booking.save
         format.html { redirect_to booking_url(@booking), notice: 'Your flight is booked!' }
+        @booking.passengers.each do |passenger|
+          PassengerMailer.booking_email(passenger).deliver_later
+        end
       else
         format.html { render :index, status: :unprocessable_entity }
       end

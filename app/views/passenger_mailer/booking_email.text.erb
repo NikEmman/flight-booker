@@ -1,0 +1,11 @@
+    Your flight is booked, <%= @passenger.name %>!
+    ====================================================================
+    You have successfully booked a flight
+    From: <%=@passenger.booking.flight.departure_airport.name%>
+    To: <%=@passenger.booking.flight.arrival_airport.name%>
+    Date | Time of departure: <%=@passenger.booking.flight.start_formatted%>
+    
+    
+    To view the booking on our site, just follow this link: <%= @url+"#{@passenger.booking_id}"%>.
+    
+    Thanks for joining and have a great day!

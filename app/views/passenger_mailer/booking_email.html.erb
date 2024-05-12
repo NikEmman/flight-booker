@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your flight is booked, <%= @passenger.name %>!</h1>
+    <p>
+      You have successfully booked a flight <br>
+      From: <%=@passenger.booking.flight.departure_airport.name%> <br>
+      To: <%=@passenger.booking.flight.arrival_airport.name%> <br>
+      Date | Time of departure: <%=@passenger.booking.flight.start_formatted%>
+    </p>
+    <p>
+      To view the booking on our site, just follow this link: <%= @url+"#{@passenger.booking_id}"%>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
